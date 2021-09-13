@@ -34,9 +34,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guessLetterFieldChanged(_ sender: UITextField) {
+        // Ensures only last character inputted by user is considered and removes whitespace (nil coalescing)
+        sender.text = String(sender.text!.last ?? " ").trimmingCharacters(in: .whitespaces)
         // Disables "Guess a Letter" button when field is empty
-        let text = guessedLetterTextField.text!
-        guessLetterButton.isEnabled = !(text.isEmpty)
+        guessLetterButton.isEnabled = !(sender.text!.isEmpty)
     }
     
     @IBAction func doneKeyPressed(_ sender: UITextField) {
